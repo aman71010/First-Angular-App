@@ -1,3 +1,16 @@
-<app-server></app-server>
-<app-server></app-server>
-<app-server></app-server>
+
+<p *ngIf="createNewServer; else noServer"> {{ serverCreatedStatus }}</p>
+<ng-template #noServer>
+    <p>Server not created.</p>
+</ng-template>
+<!-- <p> {{ serverCreatedStatus }} </p> -->
+<button [disabled]="!allowNewServer" (click) = "onCreateServer()">Add server</button>
+
+<div>
+    <!-- <input type="text" (input)="onUpdateServer($event)"> -->
+    <input type="text" [(ngModel)]="serverName">   <!-- two way data binding -->
+</div>
+
+<!-- <p> {{ serverName }}</p> -->
+
+<app-server *ngFor="let server of servers"></app-server>
